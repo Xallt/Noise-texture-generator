@@ -23,6 +23,7 @@
     "async": "^3.1.0",
     "gatsby": "^2.13.48",
     "gatsby-plugin-react-helmet": "^3.1.2",
+    "jquery": "^3.4.1",
     "random": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

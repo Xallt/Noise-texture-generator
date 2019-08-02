@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 
 import '../styles/App.css'
 
@@ -22,9 +23,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('a');
     window.onresize = this.updateSize
     this.updateSize()
+
+    $(() => {
+      document.getElementsByTagName("html")[0].style.visibility = "visible"
+    })
   }
 
   updateSize() {
@@ -64,10 +68,5 @@ class App extends React.Component {
     )
   }
 }
-
-const sizeMapper = ({width, height}) => ({
-  windowWidth: width,
-  windowHeight: height
-})
 
 export default App
