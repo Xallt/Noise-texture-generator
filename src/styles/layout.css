@@ -6,5 +6,5 @@ html, body {
 }
 
 html {
-  visibility: hidden;
+  display: none;
 }

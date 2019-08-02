@@ -23,7 +23,8 @@ class Panel extends React.Component {
   }
 
   render() {
-    return (<></>
+    return (
+      <input type="text" onInput={this.onTextInput}/>
     )
   }
 }

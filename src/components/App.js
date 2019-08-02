@@ -27,7 +27,7 @@ class App extends React.Component {
     this.updateSize()
 
     $(() => {
-      document.getElementsByTagName("html")[0].style.visibility = "visible"
+      $('html').fadeIn(500)
     })
   }
 
@@ -61,7 +61,7 @@ class App extends React.Component {
             </div>
           </div>
           <div style={{flex:'70%'}}>
-            <RenderElement panelInput={this.state.inputParams} drawer={NoiseGenerator.noise} texSize={360}/>
+            <RenderElement panelInput={this.state.inputParams} drawer={NoiseGenerator.noise} texSize={256}/>
           </div>
         </div>
       </div>
