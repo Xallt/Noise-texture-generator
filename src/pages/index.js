@@ -1,10 +1,11 @@
 import React from 'react'
 
-import Layout from '../components/layout'
+import Layout from '../templates/layout'
+import App from '../components/App'
 
 const Page = () => (
   <Layout title="Beginner's title">
-    Hello, I am pathetic for now)
+    <App/>
   </Layout>
 )
 

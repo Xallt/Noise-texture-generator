@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "gatsby develop -o",
-    "build": "gatsby build --prefix-paths && mv public docs",
+    "build": "gatsby build --prefix-paths && rm -r docs && mv public docs",
     "start": "npm run develop"
   },
   "repository": {
@@ -20,10 +20,16 @@
   },
   "homepage": "https://github.com/Xallt/Noise-map-generator#readme",
   "dependencies": {
+    "async": "^3.1.0",
     "gatsby": "^2.13.48",
     "gatsby-plugin-react-helmet": "^3.1.2",
+    "random": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-input-slider": "^5.0.16",
+    "react-sizes": "^2.0.0",
+    "react-window-size": "^1.2.2",
+    "underscore": "^1.9.1"
   }
 }
