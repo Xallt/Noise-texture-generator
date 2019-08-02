@@ -1,5 +1,4 @@
 import React from 'react'
-import withSizes from 'react-sizes'
 
 import '../styles/App.css'
 
@@ -13,10 +12,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      windowWidth: 0,
+      windowHeight: 0,
       inputParams: {}
     }
 
     this.handleInput = this.handleInput.bind(this);
+    this.updateSize = this.updateSize.bind(this)
+  }
+
+  componentDidMount() {
+    console.log('a');
+    window.onresize = this.updateSize
+    this.updateSize()
+  }
+
+  updateSize() {
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    })
   }
 
   handleInput(panelInput) {
@@ -29,8 +44,8 @@ class App extends React.Component {
     return (
       <div style={{
         margin: '0 auto',
-        width: this.props.windowWidth * .9,
-        height: Math.min(this.props.windowWidth * .5, this.props.windowHeight * .9)
+        width: this.state.windowWidth * .9,
+        height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9)
       }}>
         <div style={{display: 'flex', height: '100%'}}>
           <div style={{flex:'30%'}}>
@@ -55,4 +70,4 @@ const sizeMapper = ({width, height}) => ({
   windowHeight: height
 })
 
-export default withSizes(sizeMapper)(App)
+export default App
