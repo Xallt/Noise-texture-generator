@@ -32,7 +32,6 @@
     "react-helmet": "^5.2.1",
     "react-input-slider": "^5.0.16",
     "react-sizes": "^2.0.0",
-    "react-three": "^0.9.7",
     "react-window-size": "^1.2.2",
     "three": "^0.107.0",
     "underscore": "^1.9.1",

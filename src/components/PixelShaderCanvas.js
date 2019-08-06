@@ -1,49 +1,48 @@
 import React , {Component} from 'react'
-
-import Async from 'async'
-import Underscore from 'underscore'
-
-class CanvasDrawer {
-    constructor(context) {
-        this.ctx = context
-    }
-    pixel(x, y, rgb) {
-        this.ctx.fillStyle = 'rgb(' + rgb[0] * 256 + ',' + rgb[1] * 256 + ',' + rgb[2] * 256 + ')'
-        this.ctx.fillRect(x, y, 1, 1)
-    }
-    map(func) {
-        var self = this
-        var w = this.ctx.canvas.width, h = this.ctx.canvas.height
-        Async.each(Underscore.range(h), (i, callback) => {
-            for (let t = 0; t < w; t += 1) {
-                self.pixel(i, t, func(i / h, t / w))
-            }
-            callback()
-        })
-    }
-}
+import {Scene, OrthographicCamera, WebGLRenderer} from 'three'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {
         super(props);
-        this.canvasRef = React.createRef()
-    }
-    draw() {
-        this.renderer.map(this.props.mapper)
+
+        this.animate = this.animate.bind(this)
     }
     componentDidMount() {
-        const ctx = this.canvasRef.current.getContext('2d')
-        console.log(this.canvasRef.current.getContext('webgl'))
-        this.renderer = new CanvasDrawer(ctx)
-        this.draw()
-    }
-    componentDidUpdate() {
-        this.draw()
-    }
+        this.scene = new Scene()
+        this.camera = new OrthographicCamera(
+            -this.props.texSize / 2, 
+            this.props.texSize / 2, 
+            this.props.texSize / 2, 
+            -this.props.texSize / 2, 
+            1, 2
+        )
+        this.renderer = new WebGLRenderer()
+        this.renderer.setClearColor('#FF0000')
+        this.renderer.setSize(this.props.texSize, this.props.texSize)
+        this.mount.appendChild(this.renderer.domElement)
+        
+        this.renderer.domElement.style.height = "100%"
+        this.renderer.domElement.style.width = ""
+        this.renderer.domElement.style.margin = "0 auto"
+        this.renderer.domElement.style.display = "block"
 
+        this.start()
+    }
+    start() {
+        if (!this.frameId) {
+            this.frameId = requestAnimationFrame(this.animate)
+        }
+    }
+    animate() {
+        this.renderScene()
+        this.frameId = requestAnimationFrame(this.animate)
+    }
+    renderScene() {
+        this.renderer.render(this.scene, this.camera)
+    }
     render() {
         return (
-            <canvas ref={this.canvasRef} width={this.props.texSize} height={this.props.texSize} style={{height:'100%', margin:'0 auto', display:'block'}}></canvas>    
+            <div style={{width:"100%", height: "100%"}} ref={(mount) => {this.mount = mount}}/>
         )
     }
 }
