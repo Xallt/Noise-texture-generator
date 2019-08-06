@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-import {Scene, OrthographicCamera, WebGLRenderer} from 'three'
+import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, MeshBasicMaterial, BoxBufferGeometry, PerspectiveCamera} from 'three'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {
@@ -9,18 +9,23 @@ class PixelShaderCanvas extends Component {
     }
     componentDidMount() {
         this.scene = new Scene()
-        this.camera = new OrthographicCamera(
-            -this.props.texSize / 2, 
-            this.props.texSize / 2, 
-            this.props.texSize / 2, 
-            -this.props.texSize / 2, 
-            1, 2
-        )
-        this.renderer = new WebGLRenderer()
-        this.renderer.setClearColor('#FF0000')
+        this.camera = new PerspectiveCamera(75, 1, 0.1, 1000)
+        this.camera.position.z = 5
+        console.log(this.camera)
+        this.renderer = new WebGLRenderer({canvas: this.canvas})
+        this.renderer.setClearColor('#000000')
         this.renderer.setSize(this.props.texSize, this.props.texSize)
-        this.mount.appendChild(this.renderer.domElement)
         
+        this.shape = new Shape([
+            new Vector2(-1, -1),
+            new Vector2(-1, 1),
+            new Vector2(1, 1),
+            new Vector2(1, -1)
+        ])
+        this.geo = new BoxBufferGeometry(1, 1, 1)
+        this.mesh = new Mesh(this.geo, new MeshBasicMaterial({color: 0x0000ff}))
+        this.scene.add(this.mesh)
+        console.log(this.scene)
         this.renderer.domElement.style.height = "100%"
         this.renderer.domElement.style.width = ""
         this.renderer.domElement.style.margin = "0 auto"
@@ -42,7 +47,7 @@ class PixelShaderCanvas extends Component {
     }
     render() {
         return (
-            <div style={{width:"100%", height: "100%"}} ref={(mount) => {this.mount = mount}}/>
+            <canvas ref={(canv)=>{this.canvas = canv}} style={{height:"100%", display: "block", margin: "0 auto"}} width={this.props.texSize} height={this.props.texSize}/>
         )
     }
 }
