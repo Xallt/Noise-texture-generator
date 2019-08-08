@@ -5,7 +5,7 @@ class Renderer extends React.Component {
   
   render() {
     return (
-      <PixelShaderCanvas mapper={this.props.drawer(this.props.panelInput)} texSize = {this.props.texSize} />
+      <PixelShaderCanvas mapper={this.props.drawer(this.props.panelInput)} texSize={this.props.texSize} panelInput={this.props.panelInput} />
     )
   }
 }
