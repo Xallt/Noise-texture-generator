@@ -47,8 +47,8 @@ class PixelShaderCanvas extends Component {
     }
     render() {
         return (<>
-            <script id="vertexShader" src="../shaders/vert.glsl" type="x-shader/x-vertex"></script>
-            <script id="fragmentShader" src="../shaders/frag.glsl" type="x-shader/x-fragment"></script>
+            <script id="vertexShader" src={"shaders/vert.glsl"} type="x-shader/x-vertex"></script>
+            <script id="fragmentShader" src={"shaders/frag.glsl"} type="x-shader/x-fragment"></script>
             <canvas ref={(canv)=>{this.canvas = canv}} style={{height:"100%", display: "block", margin: "0 auto"}} width={this.props.texSize} height={this.props.texSize}/>
         </>)
     }
