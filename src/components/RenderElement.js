@@ -4,8 +4,11 @@ import PixelShaderCanvas from './PixelShaderCanvas'
 class Renderer extends React.Component {
   
   render() {
+    const uniformValues = {
+      seed: this.props.inputParams.seed
+    }
     return (
-      <PixelShaderCanvas mapper={this.props.drawer(this.props.panelInput)} texSize={this.props.texSize} panelInput={this.props.panelInput} />
+      <PixelShaderCanvas texSize={this.props.inputParams.resolution} uniformValues={uniformValues} />
     )
   }
 }

@@ -6,7 +6,6 @@ import '../styles/App.css'
 import WebsiteCaption from './WebsiteCaption'
 import GeneratorPanel from './GeneratorPanel'
 import RenderElement from './RenderElement'
-import NoiseGenerator from '../NoiseGenerator'
 
 
 class App extends React.Component {
@@ -49,7 +48,8 @@ class App extends React.Component {
       <div style={{
         margin: '0 auto',
         width: this.state.windowWidth * .9,
-        height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9)
+        height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9),
+        fontSize: "1.5vw"
       }}>
         <div style={{display: 'flex', height: '100%'}}>
           <div style={{flex:'30%'}}>
@@ -61,7 +61,7 @@ class App extends React.Component {
             </div>
           </div>
           <div style={{flex:'70%'}}>
-            <RenderElement panelInput={this.state.inputParams} drawer={NoiseGenerator.noise} texSize={256}/>
+            <RenderElement inputParams={this.state.inputParams}/>
           </div>
         </div>
       </div>

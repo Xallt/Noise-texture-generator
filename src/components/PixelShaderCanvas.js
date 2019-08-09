@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
-import vert from '../shaders/vert.glsl'
-import frag from '../shaders/frag.glsl'
+import vert from '../glsl/vert.glsl'
+import frag from '../glsl/frag.glsl'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class PixelShaderCanvas extends Component {
         this.camera.position.z = 5
         console.log(this.camera)
         this.renderer = new WebGLRenderer({canvas: this.canvas})
-        this.renderer.setClearColor('#000000')
         this.renderer.setSize(this.props.texSize, this.props.texSize)
         
         this.shape = new Shape([
@@ -26,6 +25,10 @@ class PixelShaderCanvas extends Component {
         ])
         this.geo = new ShapeBufferGeometry(this.shape)
         this.material = new ShaderMaterial({
+            uniforms: {
+                initialScale: {value: 20.0},
+                seed: {value: 0.0}
+            },
             vertexShader: vert,
             fragmentShader: frag
         })
@@ -39,6 +42,12 @@ class PixelShaderCanvas extends Component {
 
         this.start()
     }
+    componentDidUpdate() {
+        this.renderer.setSize(this.props.texSize, this.props.texSize)
+        this.renderer.domElement.style.height = "100%"
+        this.renderer.domElement.style.width = ""
+    }
+    
     start() {
         if (!this.frameId) {
             this.frameId = requestAnimationFrame(this.animate)
@@ -52,14 +61,10 @@ class PixelShaderCanvas extends Component {
         this.renderer.render(this.scene, this.camera)
     }
     render() {
-        return (<>
-            <script src={vert}></script>
-            <script src={frag}></script>
-            <canvas ref={(canv)=>{this.canvas = canv}} 
+        return <canvas ref={(canv)=>{this.canvas = canv}} 
                     style={{height:"100%", display: "block", margin: "0 auto"}} 
                     width={this.props.texSize} 
                     height={this.props.texSize}/>
-        </>)
     }
 }
 
