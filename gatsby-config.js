@@ -6,6 +6,7 @@ module.exports = {
     description: 'Online interactive noise texture generator'
   },
   plugins: [
-    'gatsby-plugin-react-helmet'
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-glslify'
   ]
 }

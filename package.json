@@ -36,5 +36,9 @@
     "three": "^0.107.0",
     "underscore": "^1.9.1",
     "webgl-utils": "^1.0.1"
+  },
+  "devDependencies": {
+    "gatsby-plugin-glslify": "^1.0.0",
+    "glslify": "^7.0.0"
   }
 }

@@ -1,5 +1,7 @@
 import React , {Component} from 'react'
-import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, MeshBasicMaterial} from 'three'
+import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
+import vert from '../shaders/vert.glsl'
+import frag from '../shaders/frag.glsl'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {
@@ -23,7 +25,11 @@ class PixelShaderCanvas extends Component {
             new Vector2(1, -1)
         ])
         this.geo = new ShapeBufferGeometry(this.shape)
-        this.mesh = new Mesh(this.geo, new MeshBasicMaterial({color: 0x0000ff}))
+        this.material = new ShaderMaterial({
+            vertexShader: vert,
+            fragmentShader: frag
+        })
+        this.mesh = new Mesh(this.geo, this.material)
         this.scene.add(this.mesh)
         console.log(this.scene)
         this.renderer.domElement.style.height = "100%"
@@ -47,9 +53,12 @@ class PixelShaderCanvas extends Component {
     }
     render() {
         return (<>
-            <script id="vertexShader" src={"shaders/vert.glsl"} type="x-shader/x-vertex"></script>
-            <script id="fragmentShader" src={"shaders/frag.glsl"} type="x-shader/x-fragment"></script>
-            <canvas ref={(canv)=>{this.canvas = canv}} style={{height:"100%", display: "block", margin: "0 auto"}} width={this.props.texSize} height={this.props.texSize}/>
+            <script src={vert}></script>
+            <script src={frag}></script>
+            <canvas ref={(canv)=>{this.canvas = canv}} 
+                    style={{height:"100%", display: "block", margin: "0 auto"}} 
+                    width={this.props.texSize} 
+                    height={this.props.texSize}/>
         </>)
     }
 }
