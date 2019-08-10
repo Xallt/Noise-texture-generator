@@ -44,7 +44,7 @@ class Panel extends React.Component {
   render() {
     return (
       <div style={{width: "90%", margin: "1% auto", padding:"1%"}}>
-        <SliderInput min={0} max={9.5} segmentation={1000} name="Resolution" defaultValue={7} 
+        <SliderInput min={0} max={10} segmentation={1000} name="Resolution" defaultValue={7} 
                      onInput={this.onResolutionInput} 
                      dataTransform={(x) => Math.round(2 ** x)}/>
         <NumberInput defaultValue={0} name="Seed" onInput={this.onSeedInput} />

@@ -1,6 +1,6 @@
 #pragma glslify: random = require(./random.glsl, seed=seed)
 
-float perlin(vec2 p) {
+float noise(vec2 p) {
     vec2 n = floor(p), f = fract(p);
     f = smoothstep(0., 1., f);
     float c = random(n + vec2(0., 1.)), d = random(n + vec2(1., 1.)),
@@ -8,4 +8,4 @@ float perlin(vec2 p) {
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
-#pragma glslify: export(perlin)
+#pragma glslify: export(noise)

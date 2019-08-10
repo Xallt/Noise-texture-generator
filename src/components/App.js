@@ -51,8 +51,8 @@ class App extends React.Component {
         height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9),
         fontSize: "1.5vw"
       }}>
-        <div style={{display: 'flex', height: '100%'}}>
-          <div style={{flex:'30%'}}>
+        <div style={{height: '100%'}}>
+          <div style={{height: '100%', width:'30%', float:'left'}}>
             <div style={{height: '20%'}}>
               <WebsiteCaption/>
             </div>
@@ -60,7 +60,7 @@ class App extends React.Component {
               <GeneratorPanel onInput={this.handleInput}/>
             </div>
           </div>
-          <div style={{flex:'70%'}}>
+          <div style={{height: '100%', width:'70%', float:'right'}}>
             <RenderElement inputParams={this.state.inputParams}/>
           </div>
         </div>
