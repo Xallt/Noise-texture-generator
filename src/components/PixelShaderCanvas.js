@@ -13,7 +13,6 @@ class PixelShaderCanvas extends Component {
         this.scene = new Scene()
         this.camera = new OrthographicCamera(-1, 1, 1, -1, 0.5, 100)
         this.camera.position.z = 5
-        console.log(this.camera)
         this.renderer = new WebGLRenderer({canvas: this.canvas})
         this.renderer.setSize(this.props.texSize, this.props.texSize)
         
@@ -32,7 +31,6 @@ class PixelShaderCanvas extends Component {
         })
         this.mesh = new Mesh(this.geo, this.material)
         this.scene.add(this.mesh)
-        console.log(this.scene)
         this.renderer.domElement.style.height = "100%"
         this.renderer.domElement.style.width = ""
         this.renderer.domElement.style.margin = "0 auto"
@@ -42,13 +40,11 @@ class PixelShaderCanvas extends Component {
     }
     constructUniforms() {
         this.uniforms = {}
-        this.uniforms.initialScale = {value:20.0}
         for (const [uniName, uniValue] of Object.entries(this.props.uniformValues)) {
             this.uniforms[uniName] = {value: uniValue}
         }
     }
     setUniforms() {
-        this.uniforms.initialScale.value = 20.0
         for (const [uniName, uniValue] of Object.entries(this.props.uniformValues)) {
             this.uniforms[uniName].value = uniValue
         }

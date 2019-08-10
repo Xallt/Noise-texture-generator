@@ -10,15 +10,15 @@ class Panel extends React.Component {
   constructor(props) {
     super(props)
     this.sendInput = this.sendInput.bind(this)
-    this.onResolutionInput = this.onResolutionInput.bind(this)
-    this.onSeedInput = this.onSeedInput.bind(this)
-
-    // Default
-    this.defaultParams = {
-      resPower: 7000
-    }
+    this.onParamInput = this.onParamInput.bind(this)
+    
     this.params = {
-      resolution: 128
+      resolution: 128,
+      octaves: 5,
+      seed: 0,
+      gain: 0.5,
+      lacunarity: 2.0,
+      scale: 10.0
     }
   }
 
@@ -31,23 +31,35 @@ class Panel extends React.Component {
     this.props.onInput(this.params);
   }
 
-  onResolutionInput(value) {
-    this.params.resolution = value
-    this.sendInput()
-  }
-
-  onSeedInput(value) {
-    this.params.seed = value
-    this.sendInput()
+  onParamInput(paramName) {
+    return ((x) => {
+      this.params[paramName] = x
+      this.sendInput()
+    })
   }
 
   render() {
     return (
       <div style={{width: "90%", margin: "1% auto", padding:"1%"}}>
-        <SliderInput min={0} max={10} segmentation={1000} name="Resolution" defaultValue={7} 
-                     onInput={this.onResolutionInput} 
+        <SliderInput name="Resolution" 
+                     min={0} max={11} segmentation={100} defaultValue={7} 
+                     onInput={this.onParamInput('resolution')} 
                      dataTransform={(x) => Math.round(2 ** x)}/>
-        <NumberInput defaultValue={0} name="Seed" onInput={this.onSeedInput} />
+        <SliderInput name="Octaves" 
+                     min={1} max={8} defaultValue={5} 
+                     onInput={this.onParamInput('octaves')}/>
+        <SliderInput name="Scale" 
+                     min={1} max={30} segmentation={100} defaultValue={10.0}
+                     onInput={this.onParamInput('scale')}/>
+        <SliderInput name="Gain" 
+                     min={0} max={3} segmentation={100} defaultValue={0.5}
+                     onInput={this.onParamInput('gain')}/>
+        <SliderInput name="Lacunarity" 
+                     min={1} max={8} segmentation={100} defaultValue={2}
+                     onInput={this.onParamInput('lacunarity')}/>
+        <NumberInput name="Seed" 
+                     defaultValue={0} 
+                     onInput={this.onParamInput('seed')}/>
       </div>
     )
   }
