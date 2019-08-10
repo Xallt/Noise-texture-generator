@@ -47,7 +47,7 @@ class Panel extends React.Component {
         <SliderInput min={0} max={9.5} segmentation={1000} name="Resolution" defaultValue={7} 
                      onInput={this.onResolutionInput} 
                      dataTransform={(x) => Math.round(2 ** x)}/>
-        {/* <NumberInput defaultValue={0} name="Seed" onInput={this.onSeedInput} /> */}
+        <NumberInput defaultValue={0} name="Seed" onInput={this.onSeedInput} />
       </div>
     )
   }

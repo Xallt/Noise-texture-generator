@@ -19,7 +19,7 @@ export default class NumberInput extends Component {
             <input id={"i" + name}
                 type="number" 
                 onInput={(e) => {
-                    this.props.onInput(parseInt(e.target.value))
+                    this.props.onInput(parseInt(e.target.value) || 0)
                     this.setState({value: e.target.value})
                 }} 
                 defaultValue={defaultValue}/>

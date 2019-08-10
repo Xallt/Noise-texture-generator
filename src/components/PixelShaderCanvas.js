@@ -24,11 +24,9 @@ class PixelShaderCanvas extends Component {
             new Vector2(1, -1)
         ])
         this.geo = new ShapeBufferGeometry(this.shape)
+        this.constructUniforms()
         this.material = new ShaderMaterial({
-            uniforms: {
-                initialScale: {value: 20.0},
-                seed: {value: 0.0}
-            },
+            uniforms: this.uniforms,
             vertexShader: vert,
             fragmentShader: frag
         })
@@ -42,10 +40,24 @@ class PixelShaderCanvas extends Component {
 
         this.start()
     }
+    constructUniforms() {
+        this.uniforms = {}
+        this.uniforms.initialScale = {value:20.0}
+        for (const [uniName, uniValue] of Object.entries(this.props.uniformValues)) {
+            this.uniforms[uniName] = {value: uniValue}
+        }
+    }
+    setUniforms() {
+        this.uniforms.initialScale.value = 20.0
+        for (const [uniName, uniValue] of Object.entries(this.props.uniformValues)) {
+            this.uniforms[uniName].value = uniValue
+        }
+    }
     componentDidUpdate() {
         this.renderer.setSize(this.props.texSize, this.props.texSize)
         this.renderer.domElement.style.height = "100%"
         this.renderer.domElement.style.width = ""
+        this.setUniforms()
     }
     
     start() {
