@@ -4,11 +4,6 @@ import vert from '../glsl/vert.glsl'
 import frag from '../glsl/frag.glsl'
 
 class PixelShaderCanvas extends Component {
-    constructor(props) {
-        super(props);
-
-        this.animate = this.animate.bind(this)
-    }
     componentDidMount() {
         this.scene = new Scene()
         this.camera = new OrthographicCamera(-1, 1, 1, -1, 0.5, 100)
@@ -35,8 +30,6 @@ class PixelShaderCanvas extends Component {
         this.renderer.domElement.style.width = ""
         this.renderer.domElement.style.margin = "0 auto"
         this.renderer.domElement.style.display = "block"
-
-        this.start()
     }
     constructUniforms() {
         this.uniforms = {}
@@ -54,18 +47,6 @@ class PixelShaderCanvas extends Component {
         this.renderer.domElement.style.height = "100%"
         this.renderer.domElement.style.width = ""
         this.setUniforms()
-    }
-    
-    start() {
-        if (!this.frameId) {
-            this.frameId = requestAnimationFrame(this.animate)
-        }
-    }
-    animate() {
-        this.renderScene()
-        this.frameId = requestAnimationFrame(this.animate)
-    }
-    renderScene() {
         this.renderer.render(this.scene, this.camera)
     }
     render() {
