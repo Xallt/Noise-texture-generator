@@ -18,7 +18,10 @@ class Panel extends React.Component {
       seed: 0,
       gain: 0.5,
       lacunarity: 2.0,
-      scale: 10.0
+      scale: 6.0,
+      dissolution: 0.01,
+      motionSteps: 1,
+      offsetScale: 10.0
     }
   }
 
@@ -51,7 +54,7 @@ class Panel extends React.Component {
                      min={1} max={8} defaultValue={5} 
                      onInput={this.onParamInput('octaves')}/>
         <SliderInput name="Scale" 
-                     min={1} max={30} segmentation={100} defaultValue={10.0}
+                     min={1} max={30} segmentation={100} defaultValue={6.0}
                      onInput={this.onParamInput('scale')}/>
         <SliderInput name="Gain" 
                      min={0} max={3} segmentation={100} defaultValue={0.5}
@@ -59,6 +62,16 @@ class Panel extends React.Component {
         <SliderInput name="Lacunarity" 
                      min={1} max={8} segmentation={100} defaultValue={2}
                      onInput={this.onParamInput('lacunarity')}/>
+        <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
+        <SliderInput name="Motion steps" 
+                     min={0} max={5} defaultValue={1}
+                     onInput={this.onParamInput('motionSteps')}/>
+        <SliderInput name="Dissolution" 
+                     min={0.001} max={1} segmentation={1000} defaultValue={0.1}
+                     onInput={this.onParamInput('dissolution')} hideValue={true}/>
+        <SliderInput name="Offset scale" 
+                     min={1} max={20} segmentation={100} defaultValue={10}
+                     onInput={this.onParamInput('offsetScale')} hideValue={true}/>
         <NumberInput name="Seed" 
                      defaultValue={0} 
                      onInput={this.onParamInput('seed')}/>

@@ -18,6 +18,11 @@ export default class SliderInput extends Component {
         defaultValue = defaultValue || min
         dataTransform = dataTransform || ((x) => x)
 
+        var valueElement = <>&nbsp;<mark className="invert">{this.state.value}</mark></>
+        if (this.props.hideValue) {
+            valueElement = <></>
+        }
+
         return (<>
             {name}: &nbsp;
             <input id={"i" + name} className="slider"
@@ -29,7 +34,7 @@ export default class SliderInput extends Component {
                 }}
                 defaultValue={defaultValue * segmentation}
                 style={{width: "10vw"}}/>
-            &nbsp;<mark className="invert">{this.state.value}</mark><br/>
+            {valueElement}<br/>
         </>)
     }
 }
