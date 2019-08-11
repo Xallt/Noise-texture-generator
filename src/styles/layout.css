@@ -8,3 +8,9 @@ html, body {
 html {
   display: none;
 }
+
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

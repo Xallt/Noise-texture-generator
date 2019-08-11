@@ -13,7 +13,7 @@ class Panel extends React.Component {
     this.onParamInput = this.onParamInput.bind(this)
     
     this.params = {
-      resolution: 128,
+      resolution: 1024,
       octaves: 5,
       seed: 0,
       gain: 0.5,
@@ -24,6 +24,8 @@ class Panel extends React.Component {
 
   componentDidMount() {
     this.sendInput()
+
+    // Autosize(this.el)
   }
   
 
@@ -40,9 +42,9 @@ class Panel extends React.Component {
 
   render() {
     return (
-      <div style={{width: "90%", margin: "1% auto", padding:"1%"}}>
+      <div ref={(el)=>{this.el = el}} style={{width: "90%", margin: "1% auto", padding:"1%"}}>
         <SliderInput name="Resolution" 
-                     min={0} max={11} segmentation={100} defaultValue={7} 
+                     min={0} max={11} segmentation={100} defaultValue={10} 
                      onInput={this.onParamInput('resolution')} 
                      dataTransform={(x) => Math.round(2 ** x)}/>
         <SliderInput name="Octaves" 
