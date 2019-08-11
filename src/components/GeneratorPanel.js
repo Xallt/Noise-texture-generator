@@ -3,7 +3,7 @@ import React from 'react'
 import '../styles/GeneratorPanel.css'
 
 import SliderInput from './panel-inputs/SliderInput'
-import NumberInput from './panel-inputs/NumberInput'
+import RandomizerInput from './panel-inputs/RandomizerInput'
 
 class Panel extends React.Component {
 
@@ -50,6 +50,9 @@ class Panel extends React.Component {
                      min={0} max={11} segmentation={100} defaultValue={10} 
                      onInput={this.onParamInput('resolution')} 
                      dataTransform={(x) => Math.round(2 ** x)}/>
+        <RandomizerInput name="Seed"
+                     onInput={this.onParamInput('seed')}/>
+        <hr/>
         <SliderInput name="Octaves" 
                      min={1} max={8} defaultValue={5} 
                      onInput={this.onParamInput('octaves')}/>
@@ -62,7 +65,8 @@ class Panel extends React.Component {
         <SliderInput name="Lacunarity" 
                      min={1} max={8} segmentation={100} defaultValue={2}
                      onInput={this.onParamInput('lacunarity')}/>
-        <hr/><h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
+        <hr/>
+        <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
         <SliderInput name="Motion steps" 
                      min={0} max={5} defaultValue={1}
                      onInput={this.onParamInput('motionSteps')}/>
@@ -72,10 +76,6 @@ class Panel extends React.Component {
         <SliderInput name="Offset scale" 
                      min={1} max={20} segmentation={100} defaultValue={10}
                      onInput={this.onParamInput('offsetScale')} hideValue={true}/>
-        <hr/>
-        <NumberInput name="Seed" 
-                     defaultValue={0} 
-                     onInput={this.onParamInput('seed')}/>
       </div>
     )
   }

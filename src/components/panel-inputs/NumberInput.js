@@ -22,7 +22,11 @@ export default class NumberInput extends Component {
                     this.props.onInput(parseInt(e.target.value) || 0)
                     this.setState({value: e.target.value})
                 }} 
-                defaultValue={defaultValue}/>
+                defaultValue={defaultValue}
+                style={{
+                    width: "9vw"
+                }}/>
+            <br/>
         </>)
     }
 }
