@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import '../../styles/slider.css'
+
 export default class SliderInput extends Component {
     constructor(props) {
         super(props)
@@ -18,14 +20,15 @@ export default class SliderInput extends Component {
 
         return (<>
             {name}: &nbsp;
-            <input id={"i" + name}
+            <input id={"i" + name} className="slider"
                 type="range" 
                 min={min * segmentation} max={max * segmentation} 
                 onInput={(e) => {
                     this.props.onInput(dataTransform(e.target.value / segmentation)) 
                     this.setState({value: dataTransform(e.target.value / segmentation)})
-                }} 
-                defaultValue={defaultValue * segmentation}/>
+                }}
+                defaultValue={defaultValue * segmentation}
+                style={{width: "10vw"}}/>
             &nbsp;<mark className="invert">{this.state.value}</mark><br/>
         </>)
     }

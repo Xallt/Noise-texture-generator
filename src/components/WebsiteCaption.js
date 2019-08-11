@@ -1,7 +1,7 @@
 import React from 'react'
 
 class Caption extends React.Component {
-  
+
   render() {
     return (
       <div ref={(el) => {this.el = el}} className="fill text-autosize">

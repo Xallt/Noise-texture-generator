@@ -2,12 +2,3 @@ main>div div {
   border: 1px solid black;
 }
 
-canvas {
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
-div {
-  box-sizing: border-box;
-}
