@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Button } from '@blueprintjs/core'
+
 export default class RandomizerInput extends Component {
     constructor(props) {
         super(props)
@@ -10,11 +12,11 @@ export default class RandomizerInput extends Component {
     render() {
         return (<>
             {this.props.name}: &nbsp;
-            <button onClick={(e) => {
+            <Button onClick={(e) => {
                 this.props.onInput(++this.seed)
             }}>
                 <h3 style={{margin: "0.2vw"}}>Randomize</h3>
-            </button>
+            </Button>
             <br/>
         </>)
     }

@@ -43,7 +43,7 @@ class Panel extends React.Component {
 
   render() {
     return (
-      <div ref={(el)=>{this.el = el}} style={{width: "90%", margin: "1% auto", padding:"1%"}}>
+      <div ref={(el)=>{this.el = el}} style={{width: "90%", margin: "1% auto", padding:"2%"}} className="block-highlight">
         <ChoiceInput name="Resolution"
                      options={{
                        "256x256": 256,
@@ -56,7 +56,6 @@ class Panel extends React.Component {
         <ChoiceInput name="Channels"
                      options={{
                        "1": 1,
-                       "2": 2,
                        "3": 3
                      }}
                      onInput={this.onParamInput('channels')}/>
@@ -65,27 +64,28 @@ class Panel extends React.Component {
         
         <hr/>
         <SliderInput name="Octaves" 
-                     min={1} max={8} defaultValue={5} 
+                     min={1} max={8} initialValue={5} 
                      onInput={this.onParamInput('octaves')}/>
+                     <hr/>
         <SliderInput name="Scale" 
-                     min={1} max={30} segmentation={100} defaultValue={6.0}
+                     min={1} max={30} step={0.001} initialValue={6.0}
                      onInput={this.onParamInput('scale')}/>
         <SliderInput name="Gain" 
-                     min={0} max={3} segmentation={100} defaultValue={0.5}
+                     min={0} max={3} step={0.001} initialValue={0.5}
                      onInput={this.onParamInput('gain')}/>
         <SliderInput name="Lacunarity" 
-                     min={1} max={8} segmentation={100} defaultValue={2}
-                     onInput={this.onParamInput('lacunarity')}/>
+                     min={1} max={8} step={0.001} initialValue={2}
+                     onInput={this.onParamInput('lacunarity')}/>  
         <hr/>
         <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
         <SliderInput name="Motion steps" 
-                     min={0} max={5} defaultValue={1}
+                     min={0} max={5} initialValue={1}
                      onInput={this.onParamInput('motionSteps')}/>
         <SliderInput name="Dissolution" 
-                     min={0.001} max={1} segmentation={1000} defaultValue={0.1}
+                     min={0.001} max={1} step={0.001} initialValue={0.1}
                      onInput={this.onParamInput('dissolution')} hideValue={true}/>
         <SliderInput name="Offset scale" 
-                     min={1} max={20} segmentation={100} defaultValue={10}
+                     min={1} max={20} step={0.001} initialValue={10}
                      onInput={this.onParamInput('offsetScale')} hideValue={true}/>
       </div>
     )

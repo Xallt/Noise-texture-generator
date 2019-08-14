@@ -49,18 +49,18 @@ class App extends React.Component {
         margin: '0 auto',
         width: this.state.windowWidth * .9,
         height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9),
-        fontSize: "1.5vw"
+        fontSize: "1.2vw"
       }}>
         <div style={{height: '100%'}}>
           <div style={{height: '100%', width:'30%', float:'left'}}>
-            <div style={{height: '20%'}}>
+            <div style={{height: '20%'}} className="block-highlight">
               <WebsiteCaption/>
             </div>
-            <div style={{height: '80%'}}>
+            <div style={{height: '80%'}} className="block-highlight">
               <GeneratorPanel onInput={this.handleInput}/>
             </div>
           </div>
-          <div style={{height: '100%', width:'70%', float:'right'}}>
+          <div style={{height: '100%', width:'70%', float:'right'}} className="block-highlight">
             <RenderElement inputParams={this.state.inputParams}/>
           </div>
         </div>

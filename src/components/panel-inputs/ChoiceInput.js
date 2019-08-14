@@ -9,9 +9,12 @@ export default class ChoiceInput extends Component {
         }
         return (<>
             {this.props.name}: &nbsp;
-            <select onChange={(e) => {this.props.onInput(e.target.value)}}>
-                {options}
-            </select>
+            <div style={{margin:"1% 0", display: "inline-block"}} className="bp3-select">
+                
+                <select onChange={(e) => {this.props.onInput(e.target.value)}}>
+                    {options}
+                </select>
+            </div>
             <br/>
         </>)
     }
