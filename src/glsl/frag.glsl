@@ -47,14 +47,13 @@ float fbm(vec2 st) {
 }
 
 void main() {
-    vec2 st = vPos;
-    for (int i = 0; i < 20; ++i) {
+    vec2 st = vPos, ost = st * offsetScale;
+    for (int i = 0; i < 10; ++i) {
         if (i >= motionSteps) {
             break;
         }
         float r_a = random(float(i)) - .5, r_B = random(r_a) * 100. - 50., r_C = random(r_B) * 100. - 50., 
               r_d = random(r_C)  - .5, r_E = random(r_d) * 100. - 50., r_F = random(r_E) * 100. - 50.;
-        vec2 ost = st * offsetScale;
         vec2 offset = vec2(fbm(vec2(ost.y * r_a + r_B, ost.x * r_a + r_C)), fbm(vec2(ost.y * r_d + r_E, ost.x * r_d + r_F)));
         st = st + offset * dissolution;
     }

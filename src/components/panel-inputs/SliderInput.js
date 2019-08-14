@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import '../../styles/slider.css'
+import '../../styles/slider.scss'
 
 export default class SliderInput extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
 
-import '../styles/App.css'
+import '../styles/App.scss'
 
 import WebsiteCaption from './WebsiteCaption'
 import GeneratorPanel from './GeneratorPanel'

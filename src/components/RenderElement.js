@@ -12,10 +12,11 @@ class Renderer extends React.Component {
       octaves: this.props.inputParams.octaves,
       motionSteps: this.props.inputParams.motionSteps,
       dissolution: this.props.inputParams.dissolution,
-      offsetScale: this.props.inputParams.offsetScale
+      offsetScale: this.props.inputParams.offsetScale,
+      channels: this.props.inputParams.channels
     }
     return (
-      <PixelShaderCanvas texSize={this.props.inputParams.resolution} uniformValues={uniformValues} />
+      <PixelShaderCanvas texSize={512} uniformValues={uniformValues} />
     )
   }
 }

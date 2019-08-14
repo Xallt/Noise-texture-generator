@@ -1,9 +1,8 @@
 import React from 'react'
 
-import '../styles/GeneratorPanel.css'
-
 import SliderInput from './panel-inputs/SliderInput'
 import RandomizerInput from './panel-inputs/RandomizerInput'
+import ChoiceInput from './panel-inputs/ChoiceInput'
 
 class Panel extends React.Component {
 
@@ -27,8 +26,6 @@ class Panel extends React.Component {
 
   componentDidMount() {
     this.sendInput()
-
-    // Autosize(this.el)
   }
   
 
@@ -46,12 +43,18 @@ class Panel extends React.Component {
   render() {
     return (
       <div ref={(el)=>{this.el = el}} style={{width: "90%", margin: "1% auto", padding:"1%"}}>
-        <SliderInput name="Resolution" 
-                     min={0} max={11} segmentation={100} defaultValue={10} 
-                     onInput={this.onParamInput('resolution')} 
-                     dataTransform={(x) => Math.round(2 ** x)}/>
+        <ChoiceInput name="Resolution"
+                     options={{
+                       "256x256": 256,
+                       "512x512": 512,
+                       "1024x1024": 1024,
+                       "2048x2048": 2048,
+                       "4096x4096": 4096
+                     }}
+                     onInput={this.onParamInput('resolution')}/>
         <RandomizerInput name="Seed"
                      onInput={this.onParamInput('seed')}/>
+        
         <hr/>
         <SliderInput name="Octaves" 
                      min={1} max={8} defaultValue={5} 
