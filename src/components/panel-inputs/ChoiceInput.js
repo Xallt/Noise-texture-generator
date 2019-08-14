@@ -9,7 +9,7 @@ export default class ChoiceInput extends Component {
         }
         return (<>
             {this.props.name}: &nbsp;
-            <select>
+            <select onChange={(e) => {this.props.onInput(e.target.value)}}>
                 {options}
             </select>
             <br/>

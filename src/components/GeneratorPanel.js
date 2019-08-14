@@ -12,7 +12,7 @@ class Panel extends React.Component {
     this.onParamInput = this.onParamInput.bind(this)
     
     this.params = {
-      resolution: 1024,
+      resolution: 256,
       octaves: 5,
       seed: 0,
       gain: 0.5,
@@ -20,7 +20,8 @@ class Panel extends React.Component {
       scale: 6.0,
       dissolution: 0.01,
       motionSteps: 1,
-      offsetScale: 10.0
+      offsetScale: 10.0,
+      channels: 1
     }
   }
 
@@ -52,6 +53,13 @@ class Panel extends React.Component {
                        "4096x4096": 4096
                      }}
                      onInput={this.onParamInput('resolution')}/>
+        <ChoiceInput name="Channels"
+                     options={{
+                       "1": 1,
+                       "2": 2,
+                       "3": 3
+                     }}
+                     onInput={this.onParamInput('channels')}/>
         <RandomizerInput name="Seed"
                      onInput={this.onParamInput('seed')}/>
         

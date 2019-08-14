@@ -6,7 +6,7 @@ uniform float seed;
 
 uniform float scale;
 uniform float gain, lacunarity, dissolution, offsetScale;
-uniform int octaves, motionSteps;
+uniform int octaves, motionSteps, channels;
 
 #pragma glslify: random = require(./modules/random.glsl, seed=seed)
 #pragma glslify: rotate = require(./modules/rotate.glsl)
@@ -25,8 +25,6 @@ float fbm(vec2 st) {
     float res = 0.;
     float amplitude = 1.;
     st = st * scale;
-    // st += vec2(19.421, -2138.);
-    // st = rotate(st, 5.12);
     for (int i = 0; i < MAX_OCTAVES; ++i) {
         if (i >= octaves) {
             break;
@@ -34,8 +32,6 @@ float fbm(vec2 st) {
         res += amplitude * noise(rotate(st, 5.12 * float(i)));
         amplitude *= gain;
         st *= lacunarity;
-        // st += vec2(19.421, -2138.);
-        // st = rotate(st, 5.12);
     }
     if (gain == 1.) {
         res = res / float(octaves);
@@ -46,8 +42,8 @@ float fbm(vec2 st) {
     return res;
 }
 
-void main() {
-    vec2 st = vPos, ost = st * offsetScale;
+float offsetNoise(vec2 st) {
+    vec2 ost = st * offsetScale;
     for (int i = 0; i < 10; ++i) {
         if (i >= motionSteps) {
             break;
@@ -57,7 +53,26 @@ void main() {
         vec2 offset = vec2(fbm(vec2(ost.y * r_a + r_B, ost.x * r_a + r_C)), fbm(vec2(ost.y * r_d + r_E, ost.x * r_d + r_F)));
         st = st + offset * dissolution;
     }
-    float res = fbm(st);
-    // res = fbm(vPos + vec2(res));
-    gl_FragColor = vec4(vec3(res), 1.);
+    return fbm(st);
+}
+
+void main() {
+    if (channels == 1) {
+        float r = offsetNoise(vPos), 
+              g = r, 
+              b = r;
+        gl_FragColor = vec4(r, g, b, 1.);
+    }
+    else if (channels == 2) {
+        float r = offsetNoise(vPos), 
+              g = offsetNoise(rotate(vPos, 45.) + vec2(617., 213.)), 
+              b = (r + g) / 2.;
+        gl_FragColor = vec4(r, g, b, 1.);
+    }
+    else if (channels == 3) {
+        float r = offsetNoise(vPos), 
+              g = offsetNoise(rotate(vPos, 45.) + vec2(617., 213.)), 
+              b = offsetNoise(rotate(vPos, 30.) - vec2(617., 213.));
+        gl_FragColor = vec4(r, g, b, 1.);
+    }
 }
