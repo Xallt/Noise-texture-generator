@@ -44,6 +44,8 @@ class Panel extends React.Component {
   render() {
     return (
       <div ref={(el)=>{this.el = el}} style={{width: "90%", margin: "1% auto", padding:"2%"}} className="block-highlight">
+        <RandomizerInput name="Seed"
+                     onInput={this.onParamInput('seed')}/>
         <ChoiceInput name="Resolution"
                      options={{
                        "256x256": 256,
@@ -59,8 +61,6 @@ class Panel extends React.Component {
                        "3": 3
                      }}
                      onInput={this.onParamInput('channels')}/>
-        <RandomizerInput name="Seed"
-                     onInput={this.onParamInput('seed')}/>
         
         <hr/>
         <SliderInput name="Octaves" 

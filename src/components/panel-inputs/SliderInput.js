@@ -37,7 +37,7 @@ export default class SliderInput extends Component {
                            this.props.onInput(e.target.value / segmentation)
                            this.setState({value: e.target.value / segmentation})
                        }}
-                       defaultValue={this.props.initialValue}
+                       defaultValue={this.props.initialValue * segmentation}
                         />
             </div>
             {valueElem}
