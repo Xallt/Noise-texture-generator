@@ -1,3 +1,5 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+
 .block-highlight {
-  border: 2px solid black;
+  border: 2px solid $black;
 }

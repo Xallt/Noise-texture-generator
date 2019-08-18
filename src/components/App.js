@@ -49,7 +49,7 @@ class App extends React.Component {
         margin: '0 auto',
         width: this.state.windowWidth * .9,
         height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9),
-        fontSize: "1.2vw"
+        fontSize: "1.3vw"
       }}>
         <div style={{height: '100%'}}>
           <div style={{height: '100%', width:'30%', float:'left'}}>

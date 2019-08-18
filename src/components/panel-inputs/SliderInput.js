@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import { Slider } from '@blueprintjs/core'
-
 import '../../styles/slider.scss'
 
 export default class SliderInput extends Component {
@@ -14,33 +12,33 @@ export default class SliderInput extends Component {
     }
 
     render() {
-        var {min, max, name, initialValue, step} = this.props
+        var {min, max, name, step} = this.props
         step = step || 1
         min = min || 0
-        initialValue = initialValue || min
 
         var stepPrecision = 0
         if (step.toString().includes(".")) {
             stepPrecision = step.toString().split(".")[1].length
         }
+        const segmentation = 10 ** stepPrecision
 
-        var valueElem = <mark className="invert" style={{margin: "0 2%"}}>{parseFloat(parseFloat(this.state.value).toFixed(stepPrecision))}</mark>
+        var valueElem = <mark className="invert" style={{margin: "0 4%", padding:"0.3% 1.6%"}}>
+            {parseFloat(parseFloat(this.state.value).toFixed(stepPrecision))}
+        </mark>
         if (this.props.hideValue) {
             valueElem = <></>
         }
         return (<>
             {name}: &nbsp;
             <div style={{display:"inline-block"}}>
-                <Slider min={min} max={max}
-                        stepSize={step}
-                        initialValue={initialValue}
-                        onChange={(x) => {
-                            this.setState({value: x})
-                            this.props.onInput(x)
-                        }}
-                        value={this.state.value}
-                        showTrackFill={false}
-                        labelRenderer={false}/>
+                <input type="range"
+                       min={min * segmentation} max={max * segmentation}
+                       onInput={(e) => {
+                           this.props.onInput(e.target.value / segmentation)
+                           this.setState({value: e.target.value / segmentation})
+                       }}
+                       defaultValue={this.props.initialValue}
+                        />
             </div>
             {valueElem}
             <br/>
