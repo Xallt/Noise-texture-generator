@@ -4,7 +4,7 @@ import Layout from '../templates/layout'
 import App from '../components/App'
 
 const Page = () => (
-  <Layout title="Beginner's title">
+  <Layout title="Noise generator">
     <App/>
   </Layout>
 )

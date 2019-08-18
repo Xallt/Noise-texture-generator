@@ -78,10 +78,7 @@ class Panel extends React.Component {
                      onInput={this.onParamInput('lacunarity')}/>  
         <hr/>
         <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
-        <SliderInput name="Motion steps" 
-                     min={0} max={5} initialValue={1}
-                     onInput={this.onParamInput('motionSteps')}/>
-        <SliderInput name="Dissolution" 
+        <SliderInput name="Strength" 
                      min={0.001} max={1} step={0.01} initialValue={0.05}
                      onInput={this.onParamInput('dissolution')} hideValue={true}/>
         <SliderInput name="Offset scale" 

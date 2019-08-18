@@ -12,6 +12,7 @@ const Layout = ({children, title}) => (
     <Helmet>
       <title>{title}</title>
       <link rel="stylesheet"></link>
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     </Helmet>
     <main>{children}</main>
   </>
