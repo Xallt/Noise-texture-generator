@@ -4,8 +4,6 @@ import { Helmet } from 'react-helmet'
 import '../styles/layout.scss'
 
 import "normalize.css";
-import "@blueprintjs/core/lib/css/blueprint.css";
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 const Layout = ({children, title}) => (
   <>
@@ -13,6 +11,9 @@ const Layout = ({children, title}) => (
       <title>{title}</title>
       <link rel="stylesheet"></link>
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      
     </Helmet>
     <main>{children}</main>
   </>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button } from '@blueprintjs/core'
+import Button from '@material-ui/core/Button'
 
 export default class RandomizerInput extends Component {
     constructor(props) {
@@ -11,11 +11,10 @@ export default class RandomizerInput extends Component {
 
     render() {
         return (<>
-            {this.props.name}: &nbsp;
             <Button onClick={(e) => {
-                this.props.onInput(++this.seed)
-            }}>
-                <h3 style={{margin: "0.2vw"}}>Randomize</h3>
+                this.props.onChange(++this.seed)
+            }} color="default" variant="contained">
+                Randomize
             </Button>
             <br/>
         </>)

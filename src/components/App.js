@@ -7,6 +7,9 @@ import WebsiteCaption from './WebsiteCaption'
 import GeneratorPanel from './GeneratorPanel'
 import RenderElement from './RenderElement'
 
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -31,9 +34,10 @@ class App extends React.Component {
   }
 
   updateSize() {
+    const w = Math.min(window.innerWidth * .9, window.innerHeight * 1.8) 
     this.setState({
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight
+      width: w,
+      height: w / 2
     })
   }
 
@@ -45,25 +49,29 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{
-        margin: '0 auto',
-        width: this.state.windowWidth * .9,
-        height: Math.min(this.state.windowWidth * .5, this.state.windowHeight * .9),
-        fontSize: "1.3vw"
+      <div 
+        className="App-container" 
+        style={{
+          width: this.state.width,
+          height: this.state.height
       }}>
-        <div style={{height: '100%'}}>
-          <div style={{height: '100%', width:'30%', float:'left'}}>
-            <div style={{height: '20%'}} className="block-highlight">
-              <WebsiteCaption/>
-            </div>
-            <div style={{height: '80%'}} className="block-highlight">
-              <GeneratorPanel onInput={this.handleInput}/>
-            </div>
-          </div>
-          <div style={{height: '100%', width:'70%', float:'right'}} className="block-highlight">
-            <RenderElement inputParams={this.state.inputParams}/>
-          </div>
-        </div>
+        <Paper>
+          <Grid container>
+            <Grid item xs={4}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <WebsiteCaption/>
+                </Grid>
+                <Grid item xs={12}>
+                  <GeneratorPanel onChange={this.handleInput}/>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={8}>
+            <RenderElement inputParams={this.state.inputParams}/>  
+            </Grid>
+          </Grid>
+        </Paper>
       </div>
     )
   }
