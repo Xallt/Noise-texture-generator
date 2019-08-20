@@ -16,15 +16,15 @@ class RowWrap extends Component {
             <Grid item xs={3}>
                 {this.props.name}
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={7}>
                 <InputComponent  {...this.props} onChange={(x) => {
                     this.setState({value: x})
                     this.props.onChange(x)
                 }}/>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={2}>
                 {!this.props.hideValue && (!params || !params.hideValue) &&
-                this.state.value
+                <div style={{textAlign:"center"}}>{this.state.value}</div> 
                 }
             </Grid>
         </Grid>

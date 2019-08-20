@@ -1,10 +1,32 @@
 import React , {Component} from 'react'
+import ReactDOM from 'react-dom'
+
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
 import vert from '../glsl/vert.glsl'
 import frag from '../glsl/frag.glsl'
 
 class PixelShaderCanvas extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            size: 0
+        }
+        
+    }
+
+    updateSize() {
+        const par = ReactDOM.findDOMNode(this).parentNode.getBoundingClientRect()
+        this.setState({
+            size: Math.min(par.width, par.height)
+        })
+    }
+
     componentDidMount() {
+        window.addEventListener('resize', (e) => {
+            this.updateSize()
+        })
+
         this.scene = new Scene()
         this.camera = new OrthographicCamera(-1, 1, 1, -1, 0.5, 100)
         this.camera.position.z = 5

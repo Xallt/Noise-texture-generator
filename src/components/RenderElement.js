@@ -15,9 +15,7 @@ class Renderer extends React.Component {
       offsetScale: this.props.inputParams.offsetScale,
       channels: this.props.inputParams.channels
     }
-    return (
-      <PixelShaderCanvas texSize={512} uniformValues={uniformValues} />
-    )
+    return <PixelShaderCanvas texSize={512} uniformValues={uniformValues} />
   }
 }
 

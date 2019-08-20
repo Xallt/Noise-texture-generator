@@ -57,7 +57,7 @@ class App extends React.Component {
       }}>
         <Paper>
           <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <Grid container>
                 <Grid item xs={12}>
                   <WebsiteCaption/>
@@ -67,8 +67,8 @@ class App extends React.Component {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={8}>
-            <RenderElement inputParams={this.state.inputParams}/>  
+            <Grid item xs={12} md={8}>
+              <RenderElement inputParams={this.state.inputParams}/>  
             </Grid>
           </Grid>
         </Paper>
