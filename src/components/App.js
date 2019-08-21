@@ -53,11 +53,12 @@ class App extends React.Component {
         className="App-container" 
         style={{
           width: this.state.width,
-          height: this.state.height
+          height: this.state.height,
+          marginTop: "1vh"
       }}>
         <Paper>
           <Grid container>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={5}>
               <Grid container>
                 <Grid item xs={12}>
                   <WebsiteCaption/>
@@ -67,7 +68,7 @@ class App extends React.Component {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={7}>
               <RenderElement inputParams={this.state.inputParams}/>  
             </Grid>
           </Grid>

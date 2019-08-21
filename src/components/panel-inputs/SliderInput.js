@@ -13,8 +13,23 @@ class SliderInput extends Component {
         this.state = {
             value: (props.initialValue || props.min || 0)
         }
+        this.handleChange = this.handleChange.bind(this)
     }
-
+    handleChange(e, v) {
+        this.props.onChange(v)
+        this.setState({value: v})
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.value !== prevState.value) {
+            // console.log(this.props.value)
+            this.props.onChange(this.props.value)
+            this.setState({value: this.props.value})
+        }
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextProps.value && this.state.value !== nextProps.value) || this.state.value !== nextState.value
+    }
+    
     render() {
         const opt = {}
         if (this.props.step) {
@@ -23,10 +38,8 @@ class SliderInput extends Component {
         return <Slider
                     min={this.props.min} max={this.props.max}
                     defaultValue={this.props.initialValue}
-                    onChange={(e, v) => {
-                        this.props.onChange(v)
-                        this.setState({value: v})
-                    }} {...opt}/>
+                    value={this.state.value}
+                    onChange={this.handleChange} {...opt}/>
     }
 }
 
