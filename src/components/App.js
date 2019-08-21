@@ -1,17 +1,24 @@
 import React from 'react'
 import $ from 'jquery'
 
-import '../styles/App.scss'
-
 import WebsiteCaption from './WebsiteCaption'
 import GeneratorPanel from './GeneratorPanel'
 import RenderElement from './RenderElement'
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import {withStyles} from "@material-ui/styles"
 
+const styles = theme => ({
+  root: {
+    margin: "0 auto",
+    paddingTop: "1%"
+  }
+})
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -48,34 +55,37 @@ class App extends React.Component {
   }
 
   render() {
+    const classes = this.props.classes
+
     return (
       <div 
-        className="App-container" 
+        className={classes.root}
         style={{
           width: this.state.width,
-          height: this.state.height,
-          marginTop: "1vh"
-      }}>
-        <Paper>
-          <Grid container>
-            <Grid item xs={12} md={5}>
-              <Grid container>
-                <Grid item xs={12}>
-                  <WebsiteCaption/>
+          height: this.state.height
+        }}>
+          <Box className="fill">
+            <Paper className="fill">
+              <Grid container className="fill">
+                <Grid item xs={12} md={5}>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <WebsiteCaption/>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <GeneratorPanel onChange={this.handleInput}/>
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <GeneratorPanel onChange={this.handleInput}/>
+                <Grid item xs={12} md={7}>
+                  <RenderElement inputParams={this.state.inputParams}/>  
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <RenderElement inputParams={this.state.inputParams}/>  
-            </Grid>
-          </Grid>
-        </Paper>
+            </Paper>
+          </Box>
       </div>
     )
   }
 }
 
-export default App
+export default withStyles(styles)(App)

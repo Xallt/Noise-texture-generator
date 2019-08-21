@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import ReactDOM from 'react-dom'
+import $ from 'jquery'
 
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
 import vert from '../glsl/vert.glsl'
@@ -16,9 +17,9 @@ class PixelShaderCanvas extends Component {
     }
 
     updateSize() {
-        const par = ReactDOM.findDOMNode(this).parentNode.getBoundingClientRect()
+        const par = $(ReactDOM.findDOMNode(this).parentNode)
         this.setState({
-            size: Math.min(par.width, par.height)
+            size: Math.min(par.width(), par.height())
         })
     }
 

@@ -4,8 +4,6 @@ import Slider from '@material-ui/core/Slider'
 
 import PanelRow from "../PanelRow"
 
-import '../../styles/slider.scss'
-
 class SliderInput extends Component {
     constructor(props) {
         super(props)
