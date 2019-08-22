@@ -14,6 +14,9 @@ const styles = theme => ({
   root: {
     margin: "0 auto",
     paddingTop: "1%"
+  },
+  limitSize: {
+    height: "100%"
   }
 })
 
@@ -58,15 +61,16 @@ class App extends React.Component {
     const classes = this.props.classes
 
     return (
-      <div 
+      <Box
         className={classes.root}
         style={{
           width: this.state.width,
           height: this.state.height
-        }}>
-          <Box className="fill">
-            <Paper className="fill">
-              <Grid container className="fill">
+        }}
+        >
+          <Box className={classes.limitSize}>
+            <Paper className={classes.limitSize}>
+              <Grid container className={classes.limitSize}>
                 <Grid item xs={12} md={5}>
                   <Grid container>
                     <Grid item xs={12}>
@@ -83,7 +87,7 @@ class App extends React.Component {
               </Grid>
             </Paper>
           </Box>
-      </div>
+      </Box>
     )
   }
 }
