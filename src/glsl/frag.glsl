@@ -2,11 +2,9 @@ varying vec2 vPos;
 
 uniform float seed;
 
-#define MAX_OCTAVES 20
-
 uniform float scale;
-uniform float gain, lacunarity, dissolution, offsetScale;
-uniform int octaves, channels;
+uniform float gain, lacunarity, offsetStrength, offsetScale;
+uniform int octaves, channels, offsetOctaves;
 
 #pragma glslify: random = require(./modules/random.glsl, seed=seed)
 #pragma glslify: rotate = require(./modules/rotate.glsl)
@@ -20,12 +18,11 @@ float noise(vec2 p) {
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
-// Fractional brownian motion
-float fbm(vec2 st) {
+float perlin(vec2 st) {
     float res = 0.;
     float amplitude = 1.;
     st = st * scale;
-    for (int i = 0; i < MAX_OCTAVES; ++i) {
+    for (int i = 0; i < 8; ++i) {
         if (i >= octaves) {
             break;
         }
@@ -41,33 +38,42 @@ float fbm(vec2 st) {
     }
     return res;
 }
-
 float offsetNoise(vec2 st) {
+    float res = 0.;
+    float amplitude = 1.;
+    for (int i = 0; i < 8; ++i) {
+        if (i >= offsetOctaves) {
+            break;
+        }
+        res += amplitude * noise(rotate(st, 5.12 * float(i)));
+        amplitude *= 0.5;
+        st *= 2.;
+    }
+    res = res * .5 / (1. - pow(.5, 8.)); 
+    return res;
+}
+
+float finalNoise(vec2 st) {
     vec2 ost = st * offsetScale;
     float r_a = random(123.) - .5, r_B = random(r_a) * 100. - 50., r_C = random(r_B) * 100. - 50., 
-            r_d = random(r_C)  - .5, r_E = random(r_d) * 100. - 50., r_F = random(r_E) * 100. - 50.;
-    vec2 offset = vec2(fbm(vec2(ost.y * r_a + r_B, ost.x * r_a + r_C)), fbm(vec2(ost.y * r_d + r_E, ost.x * r_d + r_F)));
-    st = st + offset * dissolution;
-    return fbm(st);
+          r_d = random(r_C)  - .5, r_E = random(r_d) * 100. - 50., r_F = random(r_E) * 100. - 50.;
+    // vec2 offset = vec2(offsetNoise(vec2(ost.y * r_a + r_B, ost.x * r_a + r_C)), offsetNoise(vec2(ost.y * r_d + r_E, ost.x * r_d + r_F)));
+    vec2 offset = vec2(offsetNoise(ost), offsetNoise(rotate(ost, 123.123) + vec2(327., 78.)));
+    st = st + offset * offsetStrength;
+    return perlin(st);
 }
 
 void main() {
     if (channels == 1) {
-        float r = offsetNoise(vPos), 
+        float r = finalNoise(vPos), 
               g = r, 
               b = r;
         gl_FragColor = vec4(r, g, b, 1.);
     }
-    else if (channels == 2) {
-        float r = offsetNoise(vPos), 
-              g = offsetNoise(rotate(vPos, 45.) + vec2(617., 213.)), 
-              b = (r + g) / 2.;
-        gl_FragColor = vec4(r, g, b, 1.);
-    }
     else if (channels == 3) {
-        float r = offsetNoise(vPos), 
-              g = offsetNoise(rotate(vPos, 45.) + vec2(617., 213.)), 
-              b = offsetNoise(rotate(vPos, 30.) - vec2(617., 213.));
+        float r = finalNoise(vPos), 
+              g = finalNoise(rotate(vPos, 45.) + vec2(617., 213.)), 
+              b = finalNoise(rotate(vPos, 30.) - vec2(617., 213.));
         gl_FragColor = vec4(r, g, b, 1.);
     }
 }

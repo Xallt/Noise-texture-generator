@@ -25,16 +25,16 @@ class Panel extends React.Component {
     this.onParamChange = this.onParamChange.bind(this)
     
     this.params = {
+      channels: 1,
       resolution: 256,
       octaves: 8,
       seed: 0,
       gain: 0.5,
       lacunarity: 2.0,
       scale: 3.0,
-      dissolution: 0.05,
-      motionSteps: 1,
-      offsetScale: 10.0,
-      channels: 1
+      offsetStrength: 0.3,
+      offsetOctaves: 8,
+      offsetScale: 10.0
     }
 
     this.paramChange = {
@@ -45,8 +45,9 @@ class Panel extends React.Component {
       scale: this.onParamChange('scale'),
       gain: this.onParamChange('gain'),
       lacunarity: this.onParamChange('lacunarity'),
-      dissolution: this.onParamChange('dissolution'),
-      offsetScale: this.onParamChange('offsetScale')
+      offsetStrength: this.onParamChange('offsetStrength'),
+      offsetScale: this.onParamChange('offsetScale'),
+      offsetOctaves: this.onParamChange('offsetOctaves'),
     }
   }
 
@@ -106,12 +107,14 @@ class Panel extends React.Component {
               <Grid item xs={12}>
                 <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
               </Grid>
-              
+              <SliderInput name="Octaves" 
+                          min={1} max={8} initialValue={8}
+                          onChange={this.paramChange.offsetOctaves}/>
               <SliderInput name="Strength" 
-                          min={0.001} max={1} step={0.01} initialValue={0.05}
-                          onChange={this.paramChange.dissolution}/>
-              <SliderInput name="Offset scale" 
-                          min={1} max={20} step={0.01} initialValue={10}
+                          min={0} max={2} step={0.01} initialValue={0.3}
+                          onChange={this.paramChange.offsetStrength}/>
+              <SliderInput name="Scale" 
+                          min={1} max={100} step={0.01} initialValue={10}
                           onChange={this.paramChange.offsetScale}/>
             </Grid>
           </Paper>
