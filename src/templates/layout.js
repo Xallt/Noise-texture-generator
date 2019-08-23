@@ -1,9 +1,11 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
+import 'typeface-roboto'
+
 import '../styles/layout.scss'
 
-import "normalize.css";
+import "normalize.css"
 
 const Layout = ({children, title}) => (
   <>

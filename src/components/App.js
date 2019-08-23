@@ -30,7 +30,8 @@ class App extends React.Component {
       inputParams: {}
     }
 
-    this.handleInput = this.handleInput.bind(this);
+    this.handleInput = this.handleInput.bind(this)
+    this.handleCanvasLoader = this.handleCanvasLoader.bind(this)
     this.updateSize = this.updateSize.bind(this)
   }
 
@@ -56,6 +57,11 @@ class App extends React.Component {
       inputParams: panelInput
     })
   }
+  handleCanvasLoader(canvasLoader) {
+    this.setState({
+      canvasLoader: canvasLoader
+    })
+  }
 
   render() {
     const classes = this.props.classes
@@ -66,8 +72,7 @@ class App extends React.Component {
         style={{
           width: this.state.width,
           height: this.state.height
-        }}
-        >
+        }}>
           <Box className={classes.limitSize}>
             <Paper className={classes.limitSize}>
               <Grid container className={classes.limitSize}>
@@ -77,12 +82,12 @@ class App extends React.Component {
                       <WebsiteCaption/>
                     </Grid>
                     <Grid item xs={12}>
-                      <GeneratorPanel onChange={this.handleInput}/>
+                      <GeneratorPanel onChange={this.handleInput} canvasLoader={this.state.canvasLoader} />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12} md={7}>
-                  <RenderElement inputParams={this.state.inputParams}/>  
+                  <RenderElement inputParams={this.state.inputParams} handleCanvasLoader={this.handleCanvasLoader} />  
                 </Grid>
               </Grid>
             </Paper>

@@ -13,7 +13,7 @@ class PixelShaderCanvas extends Component {
         this.state = {
             size: 0
         }
-        
+        this.canvasLoader = this.canvasLoader.bind(this)
     }
 
     updateSize() {
@@ -33,7 +33,10 @@ class PixelShaderCanvas extends Component {
         this.camera.position.z = 5
         this.renderer = new WebGLRenderer({canvas: this.canvas})
         this.renderer.setSize(this.props.texSize, this.props.texSize)
-        
+        this.canvasForLoader = document.createElement("canvas")
+        this.loadRenderer = new WebGLRenderer({canvas: this.canvasForLoader})
+        this.loadRenderer.setSize(this.props.resolution, this.props.resolution)
+
         this.shape = new Shape([
             new Vector2(-1, -1),
             new Vector2(-1, 1),
@@ -53,6 +56,8 @@ class PixelShaderCanvas extends Component {
         this.renderer.domElement.style.width = ""
         this.renderer.domElement.style.margin = "0 auto"
         this.renderer.domElement.style.display = "block"
+
+        this.props.handleCanvasLoader(this.canvasLoader)
     }
     constructUniforms() {
         this.uniforms = {}
@@ -64,6 +69,10 @@ class PixelShaderCanvas extends Component {
         for (const [uniName, uniValue] of Object.entries(this.props.uniformValues)) {
             this.uniforms[uniName].value = uniValue
         }
+    }
+    canvasLoader() {
+        this.loadRenderer.render(this.scene, this.camera)
+        return this.canvasForLoader
     }
     componentDidUpdate() {
         this.renderer.setSize(this.props.texSize, this.props.texSize)

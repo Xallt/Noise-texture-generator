@@ -32,7 +32,7 @@ class Panel extends React.Component {
       gain: 0.5,
       lacunarity: 2.0,
       scale: 3.0,
-      offsetStrength: 0.3,
+      offsetStrength: 0.15,
       offsetOctaves: 8,
       offsetScale: 10.0
     }
@@ -111,7 +111,7 @@ class Panel extends React.Component {
                           min={1} max={8} initialValue={8}
                           onChange={this.paramChange.offsetOctaves}/>
               <SliderInput name="Strength" 
-                          min={0} max={2} step={0.01} initialValue={0.3}
+                          min={0} max={2} step={0.01} initialValue={0.15}
                           onChange={this.paramChange.offsetStrength}/>
               <SliderInput name="Scale" 
                           min={1} max={100} step={0.01} initialValue={10}

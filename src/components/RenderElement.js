@@ -2,7 +2,6 @@ import React from 'react'
 import PixelShaderCanvas from './PixelShaderCanvas'
 
 class Renderer extends React.Component {
-  
   render() {
     const uniformValues = {
       seed: this.props.inputParams.seed,
@@ -16,7 +15,7 @@ class Renderer extends React.Component {
       offsetOctaves: this.props.inputParams.offsetOctaves,
       channels: this.props.inputParams.channels,
     }
-    return <PixelShaderCanvas texSize={512} uniformValues={uniformValues} />
+    return <PixelShaderCanvas texSize={512} uniformValues={uniformValues} handleCanvasLoader={this.props.handleCanvasLoader} />
   }
 }
 
