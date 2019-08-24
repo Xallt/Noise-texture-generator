@@ -76,7 +76,7 @@ class App extends React.Component {
           <Box className={classes.limitSize}>
             <Paper className={classes.limitSize}>
               <Grid container className={classes.limitSize}>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={5}>
                   <Grid container>
                     <Grid item xs={12}>
                       <WebsiteCaption/>
@@ -86,7 +86,7 @@ class App extends React.Component {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} md={7}>
+                <Grid item xs={7}>
                   <RenderElement inputParams={this.state.inputParams} handleCanvasLoader={this.handleCanvasLoader} />  
                 </Grid>
               </Grid>
