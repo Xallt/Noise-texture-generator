@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Input from '@material-ui/core/Input'
+import Typography from '@material-ui/core/Typography'
 
 export default (InputComponent, params) => 
 class RowWrap extends Component {
@@ -19,7 +20,9 @@ class RowWrap extends Component {
     render() {
         return <Grid container justify="space-around">
             <Grid item xs={3}>
-                {this.props.name}
+                <Typography>
+                    {this.props.name}  
+                </Typography>
             </Grid>
             <Grid item xs={6}>
                 <InputComponent  {...this.props} onChange={(x) => {

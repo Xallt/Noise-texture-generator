@@ -2,6 +2,7 @@ import React from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 import SliderInput from './panel-inputs/SliderInput'
 import RandomizerInput from './panel-inputs/RandomizerInput'
@@ -105,7 +106,7 @@ class Panel extends React.Component {
                           min={1} max={8} step={0.01} initialValue={2}
                           onChange={this.paramChange.lacunarity}/>  
               <Grid item xs={12}>
-                <h4 style={{margin:"3% 0"}} >Noise offsetting</h4>
+                <Typography variant="h5" style={{fontWeight:"bolder", textAlign:"center"}} gutterBottom>Noise offsetting</Typography>
               </Grid>
               <SliderInput name="Octaves" 
                           min={1} max={8} initialValue={8}
