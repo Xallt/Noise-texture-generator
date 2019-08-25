@@ -19,7 +19,6 @@ class SliderInput extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.value !== prevState.value) {
-            // console.log(this.props.value)
             this.props.onChange(this.props.value)
             this.setState({value: this.props.value})
         }
