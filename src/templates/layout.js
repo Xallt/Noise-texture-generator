@@ -3,9 +3,6 @@ import { Helmet } from 'react-helmet'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 import { red } from '@material-ui/core/colors'
-// import {useStaticQuery, graphql} from 'gatsby'
-
-// import background from './black.png'
 import '../styles/layout.scss'
 
 
@@ -40,16 +37,6 @@ const theme = createMuiTheme({
 })
 
 const Layout = ({children, title, pageContext}) => {
-  // const data = useStaticQuery(
-  //   graphql`
-  //     query {
-  //       site {
-  //         pathPrefix
-  //       }
-  //     }
-  //   `
-  // )
-  // const background = 'url(' + data.site.pathPrefix + '/black.png)'
   console.log(pageContext)
   return <>
     <Helmet>
@@ -58,13 +45,9 @@ const Layout = ({children, title, pageContext}) => {
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-      {/* <style>
-        {"html {background-image:" + background +";}"}
-      </style> */}
     </Helmet>
     <main>
       <ThemeProvider theme={theme}>
-        {/* <CssBaseline/> */}
         {children}
       </ThemeProvider>
     </main>
