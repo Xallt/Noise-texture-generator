@@ -8,16 +8,6 @@ import SliderInput from './panel-inputs/SliderInput'
 import RandomizerInput from './panel-inputs/RandomizerInput'
 import ChoiceInput from './panel-inputs/ChoiceInput'
 
-import {withStyles} from '@material-ui/styles'
-
-const styles = theme => ({
-  root: {
-    width: "95%",
-    margin: "0 auto",
-    padding: "2% 1%"
-  }
-})
-
 class Panel extends React.Component {
 
   constructor(props) {
@@ -69,11 +59,10 @@ class Panel extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
 
     return (<>
-          <Paper className={classes.root}>
-            <Grid container>
+          <Paper>
+            <Grid container style={{padding:"2% 0"}}>
               <RandomizerInput name="Seed"
                             onChange={this.paramChange.seed}/>
               <ChoiceInput name="Resolution"
@@ -90,36 +79,39 @@ class Panel extends React.Component {
                             "3": 3
                           }}
                           onChange={this.paramChange.channels}/>
-              
-              <hr/>
+              <Grid container justify="center">
+                <Grid xs={9} item>
+                  <hr/>
+                </Grid>
+              </Grid>
               <SliderInput name="Octaves" 
                           min={1} max={8} initialValue={8} 
-                          onChange={this.paramChange.octaves}/>
+                          onChange={this.paramChange.octaves} strict/>
               <SliderInput name="Scale" 
                           min={1} max={30} step={0.01} initialValue={3.0}
-                          onChange={this.paramChange.scale}/>
+                          onChange={this.paramChange.scale} strictMin/>
               <SliderInput name="Gain" 
                           min={0} max={3} step={0.01} initialValue={0.5}
-                          onChange={this.paramChange.gain}/>
+                          onChange={this.paramChange.gain} strictMin/>
               <SliderInput name="Lacunarity" 
                           min={1} max={8} step={0.01} initialValue={2}
-                          onChange={this.paramChange.lacunarity}/>  
+                          onChange={this.paramChange.lacunarity} strictMin/>  
               <Grid item xs={12}>
                 <Typography variant="h5" style={{fontWeight:"bolder", textAlign:"center"}} gutterBottom>Noise offsetting</Typography>
               </Grid>
               <SliderInput name="Octaves" 
                           min={1} max={8} initialValue={8}
-                          onChange={this.paramChange.offsetOctaves}/>
+                          onChange={this.paramChange.offsetOctaves} strict/>
               <SliderInput name="Strength" 
                           min={0} max={2} step={0.01} initialValue={0.15}
                           onChange={this.paramChange.offsetStrength}/>
               <SliderInput name="Scale" 
                           min={1} max={100} step={0.01} initialValue={10}
-                          onChange={this.paramChange.offsetScale}/>
+                          onChange={this.paramChange.offsetScale} strictMin/>
             </Grid>
           </Paper>
     </>)
   }
 }
 
-export default withStyles(styles)(Panel)
+export default Panel

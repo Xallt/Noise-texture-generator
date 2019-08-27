@@ -42,6 +42,7 @@ class App extends React.Component {
 
     $(() => {
       $('html').fadeIn(500)
+      window.dispatchEvent(new Event('resize'))
     })
   }
 
@@ -59,7 +60,6 @@ class App extends React.Component {
     })
   }
   handleURLLoader(URLLoader) {
-    console.log("Got a URL loader")
     this.URLLoader = URLLoader
   }
   loadURL() {
@@ -77,28 +77,26 @@ class App extends React.Component {
           width: this.state.width,
           height: this.state.height
         }}>
-          <Box >
-            <Paper >
-              <Grid container >
-                <Grid item xs={5}>
-                  <Grid container spacing={3} style={{margin: "2% 0"}}>
-                    <Grid item xs={12}>
-                      <WebsiteCaption/>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <GeneratorPanel onChange={this.handleInput}/>
-                    </Grid>
-                    <Grid item xs={12} style={{textAlign:"center"}}>
-                      <Button variant="contained" color="primary" size="large" href={this.state.canvasDataUrl} onClick={this.loadURL} download>Save</Button>
-                    </Grid>
+          <Paper elevation={12}>
+            <Grid container >
+              <Grid item xs={12} md={5} style={{padding: "2% 1%"}}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <WebsiteCaption/>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <GeneratorPanel onChange={this.handleInput}/>
+                  </Grid>
+                  <Grid item xs={12} style={{textAlign:"center"}}>
+                    <Button variant="contained" color="primary" size="large" href={this.state.canvasDataUrl} onClick={this.loadURL} download>Save</Button>
                   </Grid>
                 </Grid>
-                <Grid item xs={7}>
-                  <RenderElement inputParams={this.state.inputParams} handleURLLoader={this.handleURLLoader} />  
-                </Grid>
               </Grid>
-            </Paper>
-          </Box>
+              <Grid item xs={12} md={7}>
+                <RenderElement inputParams={this.state.inputParams} handleURLLoader={this.handleURLLoader} />  
+              </Grid>
+            </Grid>
+          </Paper>
       </Box>
     )
   }

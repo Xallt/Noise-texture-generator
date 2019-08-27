@@ -1,11 +1,41 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-
-import 'typeface-roboto'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
+import { red } from '@material-ui/core/colors'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import '../styles/layout.scss'
 
-import "normalize.css"
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    text: {
+      primary: '#FFF'
+    },
+    primary: {
+      main: red[800]
+    }
+  },
+  overrides: {
+    MuiPaper: {
+      elevation12: {
+        backgroundColor: 'rgba(33, 33, 33, 0.7)'
+      },
+      elevation1: {
+        backgroundColor: 'rgba(26, 26, 26, 1)',
+      }
+    },
+    MuiInput: {
+      root: {
+        backgroundColor: 'rgba(22, 22, 22, 1)'
+      }
+    }
+  },
+  typography: {
+    fontFamily: 'Red Hat Display, sans-serif'   
+  }
+})
 
 const Layout = ({children, title}) => (
   <>
@@ -17,7 +47,12 @@ const Layout = ({children, title}) => (
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       
     </Helmet>
-    <main>{children}</main>
+    <main>
+      <ThemeProvider theme={theme}>
+        {/* <CssBaseline/> */}
+        {children}
+      </ThemeProvider>
+    </main>
   </>
 )
 

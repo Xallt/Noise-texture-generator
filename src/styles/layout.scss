@@ -2,6 +2,7 @@
 
 @import "~@blueprintjs/core/lib/scss/variables";
 
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
 
 html, body {  
   width: 100%;
@@ -12,6 +13,7 @@ html, body {
 
 html {
   display: none;
+  background-image: url(/black.png);
 }
 
 div {

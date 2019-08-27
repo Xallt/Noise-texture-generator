@@ -18,13 +18,24 @@ class RowWrap extends Component {
     }
     
     render() {
+        const inputProps = {
+            step: this.props.step,
+            type: 'number'
+        }
+        if (this.props.strict || this.props.strictMin) {
+            inputProps.min = this.props.min
+        }
+        if (this.props.strict || this.props.strictMax) {
+            inputProps.max = this.props.max
+        }
+
         return <Grid container justify="space-around">
-            <Grid item xs={3}>
-                <Typography>
+            <Grid item xs={2}>
+                <Typography style={{fontSize:"20px"}}>
                     {this.props.name}  
                 </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={7}>
                 <InputComponent  {...this.props} onChange={(x) => {
                     this.setState({value: x})
                     this.props.onChange(x)
@@ -39,12 +50,7 @@ class RowWrap extends Component {
                     onChange={(e) => {
                         this.setState({value: parseFloat(e.target.value)})
                     }}
-                    inputProps={{
-                        step: this.props.step,
-                        min: this.props.min,
-                        max: this.props.max,
-                        type: 'number'
-                    }}/>
+                    inputProps={inputProps}/>
                 }
             </Grid>
         </Grid>

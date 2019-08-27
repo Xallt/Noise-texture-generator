@@ -5,6 +5,7 @@ import $ from 'jquery'
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
 import vert from '../glsl/vert.glsl'
 import frag from '../glsl/frag.glsl'
+import Center from 'react-center'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {
@@ -19,9 +20,10 @@ class PixelShaderCanvas extends Component {
 
     updateSize() {
         const par = $(ReactDOM.findDOMNode(this).parentNode)
-        this.setState({
-            size: Math.min(par.width(), par.height())
-        })
+        this.size = Math.min(par.width(), par.height())
+        // this.topMargin = (par.height() - this.size) / 2
+        this.renderer.domElement.style.height = this.size + "px"
+        this.renderer.domElement.style.width = this.size + "px"
     }
 
     componentDidMount() {
@@ -89,15 +91,14 @@ class PixelShaderCanvas extends Component {
     }
     componentDidUpdate() {
         this.renderer.setSize(this.props.texSize, this.props.texSize)
-        this.renderer.domElement.style.height = "100%"
-        this.renderer.domElement.style.width = ""
         this.setUniforms()
         this.renderer.render(this.scene, this.camera)
-        console.log('rendered')
+        this.renderer.domElement.style.height = this.size + "px"
+        this.renderer.domElement.style.width = this.size + "px"
     }
     render() {
         return <canvas ref={(canv)=>{this.canvas = canv}} 
-                    style={{height:"100%", display: "block", margin: "0 auto"}} 
+                    style={{display: "block"}} 
                     width={this.props.texSize} 
                     height={this.props.texSize}/>
     }
