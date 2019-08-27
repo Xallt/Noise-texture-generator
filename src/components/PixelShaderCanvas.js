@@ -5,7 +5,6 @@ import $ from 'jquery'
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
 import vert from '../glsl/vert.glsl'
 import frag from '../glsl/frag.glsl'
-import Center from 'react-center'
 
 class PixelShaderCanvas extends Component {
     constructor(props) {

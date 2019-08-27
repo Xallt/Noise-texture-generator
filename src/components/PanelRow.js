@@ -35,7 +35,7 @@ class RowWrap extends Component {
                     {this.props.name}  
                 </Typography>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
                 <InputComponent  {...this.props} onChange={(x) => {
                     this.setState({value: x})
                     this.props.onChange(x)
@@ -48,7 +48,7 @@ class RowWrap extends Component {
                     value={this.state.value}
                     margin="dense"
                     onChange={(e) => {
-                        this.setState({value: parseFloat(e.target.value)})
+                        this.setState({value: parseFloat(e.target.value) || this.props.min})
                     }}
                     inputProps={inputProps}/>
                 }
