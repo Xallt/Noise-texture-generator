@@ -9,11 +9,11 @@ import '../styles/layout.scss'
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
-    text: {
-      primary: '#FFF'
-    },
     primary: {
       main: red[800]
+    } ,
+    secondary: {
+      main: "#6f2232"
     }
   },
   overrides: {
@@ -36,8 +36,7 @@ const theme = createMuiTheme({
   }
 })
 
-const Layout = ({children, title, pageContext}) => {
-  console.log(pageContext)
+const Layout = ({children, title}) => {
   return <>
     <Helmet>
       <title>{title}</title>

@@ -84,7 +84,7 @@ class Panel extends React.Component {
                   <hr/>
                 </Grid>
               </Grid>
-              <SliderInput name="Octaves" 
+              <SliderInput name="Iterations" 
                           min={1} max={8} initialValue={8} 
                           onChange={this.paramChange.octaves} strict/>
               <SliderInput name="Scale" 
@@ -97,9 +97,9 @@ class Panel extends React.Component {
                           min={1} max={8} step={0.01} initialValue={2}
                           onChange={this.paramChange.lacunarity} strictMin/>  
               <Grid item xs={12}>
-                <Typography variant="h5" style={{fontWeight:"bolder", textAlign:"center"}} gutterBottom>Noise offsetting</Typography>
+                <Typography variant="h5" style={{fontWeight:"bolder", textAlign:"center"}} gutterBottom>Distortion</Typography>
               </Grid>
-              <SliderInput name="Octaves" 
+              <SliderInput name="Iterations" 
                           min={1} max={8} initialValue={8}
                           onChange={this.paramChange.offsetOctaves} strict/>
               <SliderInput name="Strength" 

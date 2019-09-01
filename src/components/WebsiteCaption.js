@@ -10,7 +10,9 @@ class Caption extends React.Component {
     return (
       <Box style={{width:"95%", marginTop:"2%"}}>
         <Typography variant="h2" component="h1" style={{textAlign:"center", fontWeight: 'bold'}} gutterBottom>Noise generation</Typography>
-        <Typography variant="h5" component="h1" style={{textAlign:"center"}} gutterBottom>See on <Link href="https://github.com/Xallt/Noise-map-generator">Github</Link></Typography>
+        <Typography variant="h5" component="h1" style={{textAlign:"center"}} gutterBottom>
+          See on <Link color="primary" href="https://github.com/Xallt/Noise-map-generator">Github</Link>
+        </Typography>
       </Box>
     )
   }
