@@ -62,9 +62,12 @@ class App extends React.Component {
   handleURLLoader(URLLoader) {
     this.URLLoader = URLLoader
   }
-  loadURL() {
-    this.setState({
-      canvasDataUrl: this.URLLoader()
+  loadURL(e) {
+    this.URLLoader().then((url) => {
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'noise'
+      a.click()
     })
   }
   render() {
@@ -88,7 +91,7 @@ class App extends React.Component {
                     <GeneratorPanel onChange={this.handleInput}/>
                   </Grid>
                   <Grid item xs={12} style={{textAlign:"center"}}>
-                    <Button variant="contained" color="primary" size="large" href={this.state.canvasDataUrl} onClick={this.loadURL} download>Save</Button>
+                    <Button variant="contained" color="primary" size="large" onClick={this.loadURL}>Save</Button>
                   </Grid>
                 </Grid>
               </Grid>

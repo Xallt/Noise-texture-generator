@@ -70,7 +70,8 @@ class Panel extends React.Component {
                             "256x256": 256,
                             "512x512": 512,
                             "1024x1024": 1024,
-                            "2048x2048": 2048
+                            "2048x2048": 2048,
+                            "4096x4096": 4096
                           }}
                           onChange={this.paramChange.resolution}/>
               <ChoiceInput name="Channels"

@@ -85,8 +85,14 @@ class PixelShaderCanvas extends Component {
     URLLoader() {
         this.loadRenderer.setSize(this.props.loadResolution, this.props.loadResolution)
         this.loadRenderer.render(this.scene, this.camera)
+        
+        const blobPromise = new Promise(resolve => {
+            this.canvasForLoader.toBlob((blob) => {
+                resolve(URL.createObjectURL(blob))
+            })
+        })
 
-        return this.canvasForLoader.toDataURL()
+        return blobPromise
     }
     componentDidUpdate() {
         this.renderer.setSize(this.props.texSize, this.props.texSize)
