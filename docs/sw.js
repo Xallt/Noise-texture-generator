@@ -26,27 +26,27 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-b77a5eb34712ab940bea.js"
+    "url": "webpack-runtime-d2f4d9694728c66a8017.js"
   },
   {
-    "url": "commons.0230d85b95c698dce5a1.css"
+    "url": "commons.ed68a886049030b7cf75.css"
   },
   {
     "url": "commons-07f154a929cebf9a378e.js"
   },
   {
-    "url": "app-be1a1a1cdb887f11e0de.js"
+    "url": "app-27742c178b1275ff5234.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-9de957af03582c867c52.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "9b544010940a5a98a465702b48ffcebc"
+    "revision": "3703a40ca3a0a9a11084f6f21722b757"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "82519631f5194b5202590d683b68b39e"
+    "revision": "fb8a9427d316ffa079688db92790f73a"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -65,12 +65,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/Noise-map-generator`), ``)
+  pathname = pathname.replace(new RegExp(`^/Noise-texture-generator`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/Noise-map-generator/app-be1a1a1cdb887f11e0de.js`))) {
+  if (!resources || !(await caches.match(`/Noise-texture-generator/app-27742c178b1275ff5234.js`))) {
     return await fetch(event.request)
   }
 
@@ -83,7 +83,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/Noise-map-generator/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/Noise-texture-generator/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 

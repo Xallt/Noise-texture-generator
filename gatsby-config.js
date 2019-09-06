@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '/Noise-map-generator',
+  pathPrefix: '/Noise-texture-generator',
   siteMetadata: {
     title: 'Noise generator',
     siteUrl: 'https://xallt.github.io',
