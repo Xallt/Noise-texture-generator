@@ -46,7 +46,7 @@
     "react-input-slider": "^5.1.2",
     "react-sizes": "^2.0.0",
     "react-window-size": "^1.2.2",
-    "three": "^0.107.0",
+    "three": "^0.125.0",
     "typeface-roboto": "0.0.75",
     "underscore": "^1.9.1",
     "webgl-utils": "^1.0.1"
