@@ -48,7 +48,7 @@
     "react-window-size": "^1.2.2",
     "three": "^0.107.0",
     "typeface-roboto": "0.0.75",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "webgl-utils": "^1.0.1"
   },
   "devDependencies": {
