@@ -1,6 +1,4 @@
-import React , {Component} from 'react'
-import ReactDOM from 'react-dom'
-import $ from 'jquery'
+import React, { Component } from 'react'
 
 import {Scene, OrthographicCamera, WebGLRenderer, Shape, Vector2, ShapeBufferGeometry, Mesh, ShaderMaterial} from 'three'
 import vert from '../glsl/vert.glsl'
@@ -18,9 +16,9 @@ class PixelShaderCanvas extends Component {
     }
 
     updateSize() {
-        const par = $(ReactDOM.findDOMNode(this).parentNode)
-        this.size = Math.min(par.width(), par.height())
-        // this.topMargin = (par.height() - this.size) / 2
+        const parent = this.canvas?.parentNode
+        if (!parent || !this.renderer) return
+        this.size = Math.min(parent.clientWidth, parent.clientHeight)
         this.renderer.domElement.style.height = this.size + "px"
         this.renderer.domElement.style.width = this.size + "px"
     }
@@ -59,6 +57,7 @@ class PixelShaderCanvas extends Component {
         this.renderer.domElement.style.margin = "0 auto"
         this.renderer.domElement.style.display = "block"
 
+        this.updateSize()
         this.props.handleURLLoader(this.URLLoader)
     }
     shouldComponentUpdate(nextProps, nextState) {

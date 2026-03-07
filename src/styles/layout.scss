@@ -1,6 +1,6 @@
 @import 'partial';
 
-@import "~@blueprintjs/core/lib/scss/variables";
+@import "@blueprintjs/core/lib/scss/variables";
 
 @import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
 
@@ -12,8 +12,13 @@ html, body {
 }
 
 html {
-  display: none;
+  opacity: 0;
+  transition: opacity 0.5s;
   background-image: url(./black.png);
+
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 div {

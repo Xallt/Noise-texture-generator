@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 
 import WebsiteCaption from './WebsiteCaption'
 import GeneratorPanel from './GeneratorPanel'
@@ -39,11 +38,8 @@ class App extends React.Component {
   componentDidMount() {
     window.onresize = this.updateSize
     this.updateSize()
-
-    $(() => {
-      $('html').fadeIn(500)
-      window.dispatchEvent(new Event('resize'))
-    })
+    document.documentElement.classList.add('loaded')
+    window.dispatchEvent(new Event('resize'))
   }
 
   updateSize() {

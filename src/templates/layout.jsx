@@ -1,5 +1,4 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 import { red } from '@material-ui/core/colors'
@@ -36,21 +35,14 @@ const theme = createMuiTheme({
   }
 })
 
-const Layout = ({children, title}) => {
-  return <>
-    <Helmet>
-      <title>{title}</title>
-      <link rel="stylesheet"></link>
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    </Helmet>
+const Layout = ({ children }) => {
+  return (
     <main>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>
     </main>
-  </>
+  )
 }
 
 export default Layout;

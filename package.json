@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "develop": "gatsby develop",
-    "build": "gatsby build --prefix-paths && rm -r docs && mv public docs",
-    "start": "npm run develop"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -22,27 +22,16 @@
   "dependencies": {
     "@blueprintjs/core": "^3.18.0",
     "@blueprintjs/icons": "^3.10.0",
-    "@hot-loader/react-dom": "^16.8.6",
     "@material-ui/core": "^4.3.3",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.3",
     "async": "^3.1.0",
     "fitty": "^2.2.6",
-    "flowtype": "^2.0.0",
-    "fs": "0.0.1-security",
-    "gatsby": "^2.14.0",
-    "gatsby-plugin-offline": "^2.2.10",
-    "gatsby-plugin-react-helmet": "^3.1.5",
-    "gatsby-plugin-sass": "^2.1.12",
-    "jquery": "^3.4.1",
-    "node-sass": "^4.12.0",
-    "path": "^0.12.7",
     "random": "^2.1.1",
-    "react": "^16.9.0",
+    "react": "^18.2.0",
     "react-center": "^1.1.1",
     "react-contenteditable": "^3.3.2",
-    "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1",
+    "react-dom": "^18.2.0",
     "react-input-slider": "^5.1.2",
     "react-sizes": "^2.0.0",
     "react-window-size": "^1.2.2",
@@ -52,7 +41,9 @@
     "webgl-utils": "^1.0.1"
   },
   "devDependencies": {
-    "gatsby-plugin-glslify": "^1.0.0",
-    "glslify": "^7.0.0"
+    "@vitejs/plugin-react": "^4.2.1",
+    "sass": "^1.69.0",
+    "vite": "^5.0.0",
+    "vite-plugin-glslify": "^2.3.0"
   }
 }
